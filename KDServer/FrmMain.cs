@@ -17,6 +17,11 @@ namespace DK.KDServer.KDFrm
             InitializeComponent();
         }
 
+        /// <summary>
+        /// EMS
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnEMS_Click(object sender, EventArgs e)
         {
             KDPathBase _ems = new KDPath_EMS();
@@ -35,7 +40,38 @@ namespace DK.KDServer.KDFrm
                    string kdPath= _ems.GetKDPath();//获取到快递路径
 
                    this.richTextBox1.Text = kdPath;
-                   //MessageBox.Show(kdPath);
+
+                   this.dgvdata.DataSource = _ems.listKDPath;
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// 圆通
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnYT_Click(object sender, EventArgs e)
+        {
+            KDPathBase _yto = new KDPath_YTO();
+            _yto.KDNo = txtKDNo.Text;
+
+            if (_yto.Init())
+            {
+                FrmVerificationCode frmVericode = new FrmVerificationCode();
+                frmVericode.BMVerificationCode = _yto.BMVerificationCode;
+                frmVericode.VeriCodeLength = _yto.VeriCodeLength;
+                frmVericode.Owner = this;
+                frmVericode.ShowDialog();
+                if (frmVericode.VeriCode != null && frmVericode.VeriCode.Length == _yto.VeriCodeLength)
+                {
+                    _yto.VerificationCode = frmVericode.VeriCode;//验证码
+                    string kdPath = _yto.GetKDPath();//获取到快递路径
+
+                    this.richTextBox1.Text = kdPath;
+
+                    this.dgvdata.DataSource = _yto.listKDPath;
                 }
             }
 

@@ -36,6 +36,11 @@ namespace DK.KDServer.WEBDA.DFW
         /// http:操作实例
         /// </summary>
         public HttpHelper HttpHelp{get;set;}
+
+        /// <summary>
+        /// 快递运送 到达 列表
+        /// </summary>
+        public List<KDPathOR> listKDPath { get; set; }
         #endregion
 
         #region 接口函数

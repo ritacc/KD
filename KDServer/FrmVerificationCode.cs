@@ -39,6 +39,7 @@ namespace DK.KDServer.KDFrm
             if (txtVericode.Text.Trim().Length == VeriCodeLength)
             {
                 _VeriCode = txtVericode.Text.Trim();
+                this.Close();
             }
         }
 
@@ -67,6 +68,12 @@ namespace DK.KDServer.KDFrm
             }
             _VeriCode = YZM.EMS.Get(buffer, stride);
             txtVericode.Text = _VeriCode;
+            int iResult=0;
+            if (int.TryParse(_VeriCode, out iResult))
+            {
+                this.Close();
+            }
+            txtVericode.Focus();
         }
 
         private void txtVericode_KeyUp(object sender, KeyEventArgs e)

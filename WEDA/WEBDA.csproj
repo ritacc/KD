@@ -42,10 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DFW\IKDPath.cs" />
+    <Compile Include="DFW\KDPathBase.cs" />
+    <Compile Include="DFW\KDPathOR.cs" />
     <Compile Include="DFW\KDPath_EMS.cs" />
+    <Compile Include="DFW\KDPath_YTO.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{529AC2D8-5340-4A43-BD56-D4A6E2C2D9D9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

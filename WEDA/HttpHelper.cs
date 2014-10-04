@@ -254,7 +254,7 @@ namespace DK.KDServer.WEBDA
         
 
         
-        public string PostQQSpaceMessage(string Url, string postDataStr, Encoding m_code)
+        public string PostSpaceMessage(string Url, string postDataStr, Encoding m_code)
         {
             string str = "";
             try
