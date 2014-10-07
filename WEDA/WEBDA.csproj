@@ -45,7 +45,10 @@
     <Compile Include="DFW\KDPathBase.cs" />
     <Compile Include="DFW\KDPathOR.cs" />
     <Compile Include="DFW\KDPath_EMS.cs" />
+    <Compile Include="DFW\KDPath_SF-Express.cs" />
+    <Compile Include="DFW\KDPath_STO.cs" />
     <Compile Include="DFW\KDPath_YTO.cs" />
+    <Compile Include="DFW\KDPath_YunDaex.cs" />
     <Compile Include="HttpHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

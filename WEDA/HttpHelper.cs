@@ -279,6 +279,11 @@ namespace DK.KDServer.WEBDA
                 StreamReader reader = new StreamReader(responseStream, m_code);
                 str = reader.ReadToEnd();
                 reader.Close();
+                string Header = response.Headers["location"];
+                if (string.IsNullOrEmpty(str))
+                {
+                    str = Header;
+                }
                 responseStream.Close();
             }
             catch (Exception ex)
@@ -287,7 +292,50 @@ namespace DK.KDServer.WEBDA
             }
             return str;
         }
-        
+
+        /// <summary>
+        /// 根据需要，返回Location
+        /// </summary>
+        /// <param name="Url"></param>
+        /// <param name="postDataStr"></param>
+        /// <param name="m_code"></param>
+        /// <param name="Location"></param>
+        /// <returns></returns>
+        public string PostSpaceMessage_outLocation(string Url, string postDataStr, Encoding m_code, out string Location)
+        {
+            string str = "";
+            Location = string.Empty;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url);
+                request.Method = "POST";
+                request.KeepAlive = true;
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.CookieContainer = cc;
+
+                request.Accept = "text/html, */*";
+
+                request.UserAgent = "Mozilla/3.0 (compatible; Indy Library)";
+
+                request.AllowAutoRedirect = false;
+                StreamWriter writer = new StreamWriter(request.GetRequestStream(), m_code);
+                writer.Write(postDataStr);
+                writer.Close();
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                response.GetResponseHeader("Set-Cookie");
+                Stream responseStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(responseStream, m_code);
+                str = reader.ReadToEnd();
+                reader.Close();
+                Location = response.Headers["location"];
+                responseStream.Close();
+            }
+            catch (Exception ex)
+            {
+                str = ex.Message;
+            }
+            return str;
+        }
 
        
 

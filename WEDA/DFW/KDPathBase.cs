@@ -17,6 +17,7 @@ namespace DK.KDServer.WEBDA.DFW
         /// </summary>
         public string KDNo { get; set; }
 
+        public string URL { get; set; }
         /// <summary>
         /// 验证码图片
         /// </summary>

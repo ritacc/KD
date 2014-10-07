@@ -55,18 +55,20 @@ namespace DK.KDServer.WEBDA.DFW
                 EndIndex = End;
                 if (i <= 1 && Start < 0)
                     return null;
+                string mData = trStr.Substring(Start_end + 1, End - Start_end - 1);
                 if (i == 0)
                 {
-                    obj.PathData = Convert.ToDateTime(trStr.Substring(Start_end + 1, End - Start_end-1));
+                    if (!string.IsNullOrEmpty(mData.Trim()))
+                        obj.PathData = Convert.ToDateTime(mData);
                 }
                 else if (i == 1)
                 {
-                    obj.City = trStr.Substring(Start_end + 1, End - Start_end - 1);
+                    obj.City = mData;
                     obj.Index = Convert.ToInt32(id);
                 }
                 else if (i == 2)
                 {
-                    obj.KDStatus = trStr.Substring(Start_end + 1, End - Start_end - 1);
+                    obj.KDStatus = mData;
                 }
             }
             return obj;

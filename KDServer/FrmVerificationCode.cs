@@ -80,6 +80,7 @@ namespace DK.KDServer.KDFrm
         {
             if (e.KeyCode == Keys.Enter)
             {
+                _VeriCode = txtVericode.Text.Trim();
                 this.Close();
             }
         }
